@@ -1,0 +1,15 @@
+module "users_audit" {
+  source = "../"
+
+  environment             = "develop"
+  role_name               = "example-api"
+  cluster_oidc_issuer_url = "" // module.eks_microservices.cluster_oidc_issuer_url
+  sqs_names               = ["example-api"]
+  buckets_names           = ["example-api-photos"]
+  event_bus_names         = ["example-api"]
+  has_dynamo              = true
+  has_ses                 = true
+  has_sns                 = true
+
+  tags = {} // data.terraform_remote_state.base.outputs.tags_all["devops"]
+}
